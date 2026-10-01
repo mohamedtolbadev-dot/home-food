@@ -63,19 +63,19 @@ export function appendCustomerOrder(order) {
     const snapshot = item.mealSnapshot;
     return {
       mealId: item.mealId,
-      name: snapshot?.name ?? meal?.name ?? "Plat",
+      name: snapshot?.name ?? meal?.name ?? "طبق",
       image: snapshot?.image ?? meal?.image ?? "",
       quantity: item.quantity,
       unitPrice: item.unitPrice,
       cookId: item.cookId,
-      cookName: snapshot?.cook ?? cook?.name ?? "Cuisinière",
+      cookName: snapshot?.cook ?? cook?.name ?? "طباخة",
       cookImage: cook?.image ?? "",
     };
   });
   const firstItem = items[0];
   const cook = cooks.find((entry) => entry.id === firstItem?.cookId);
   const deliveryAddress = {
-    label: "Adresse de livraison",
+    label: "عنوان التوصيل",
     ...order.delivery,
   };
   const customerOrder = {

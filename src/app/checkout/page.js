@@ -1,8 +1,8 @@
 import CheckoutPage from "@/components/orders/checkout-page";
 
 export const metadata = {
-  title: "Finaliser ma commande",
-  description: "Choisissez une heure et indiquez où vous souhaitez recevoir votre plat maison.",
+  title: "كمل الطلب ديالك",
+  description: "ختار وقت التوصيل وفين بغيتي يوصلك الطبق ديال الدار.",
 };
 
 export default function CheckoutRoute() {

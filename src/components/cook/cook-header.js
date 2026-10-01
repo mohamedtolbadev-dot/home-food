@@ -5,12 +5,12 @@ export default function CookHeader({ title, subtitle, mobileNavOpen, setMobileNa
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--color-line)] bg-[var(--color-canvas)]/95 backdrop-blur-[1px]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8 lg:px-10">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="Dar Matbakh, accueil">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="دار مطبخ، الرئيسية">
           <span className="flex size-9 items-center justify-center rounded-2xl bg-[var(--color-brand)] text-white">
             <ChefHat size={18} aria-hidden="true" />
           </span>
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">Cook studio</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">فضاء الطباخة</p>
             <p className="text-sm font-semibold tracking-[-0.04em] text-[var(--color-ink)]">{title}</p>
           </div>
         </Link>
@@ -25,7 +25,7 @@ export default function CookHeader({ title, subtitle, mobileNavOpen, setMobileNa
 
         <button
           type="button"
-          aria-label={mobileNavOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={mobileNavOpen ? "سد القائمة" : "حل القائمة"}
           aria-expanded={mobileNavOpen}
           onClick={() => setMobileNavOpen((current) => !current)}
           className="inline-flex size-10 items-center justify-center rounded-xl border border-[var(--color-line)] bg-white text-[var(--color-ink)] lg:hidden"

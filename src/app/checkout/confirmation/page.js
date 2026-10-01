@@ -22,6 +22,6 @@ export default function OrderConfirmationRoute() {
 
   return <>
     <SiteHeader />
-    {isReady && order ? <OrderConfirmation order={order} /> : isReady ? <main className="flex min-h-[65vh] flex-col items-center justify-center px-5 text-center"><h1 className="text-2xl font-semibold">Aucune confirmation à afficher</h1><p className="mt-2 text-sm text-[var(--color-muted)]">Votre dernière commande confirmée n’a pas été trouvée sur cet appareil.</p><Link href="/meals" className="mt-5 text-sm font-semibold text-[var(--color-brand)] underline">Découvrir les plats</Link></main> : <main className="min-h-[60vh] px-5 py-16 text-center text-sm text-[var(--color-muted)]">Chargement de la confirmation…</main>}
+    {isReady && order ? <OrderConfirmation order={order} /> : isReady ? <main className="flex min-h-[65vh] flex-col items-center justify-center px-5 text-center"><h1 className="text-2xl font-semibold">ما كاين حتى تأكيد باش يبان</h1><p className="mt-2 text-sm text-[var(--color-muted)]">ما لقيناش آخر طلب تأكد فهاد الجهاز.</p><Link href="/meals" className="mt-5 text-sm font-semibold text-[var(--color-brand)] underline">شوف الماكلة</Link></main> : <main className="min-h-[60vh] px-5 py-16 text-center text-sm text-[var(--color-muted)]">كنحملو التأكيد…</main>}
   </>;
 }

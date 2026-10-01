@@ -5,17 +5,17 @@ import { usePathname } from "next/navigation";
 import { Heart, MapPin, Package, UserRound } from "lucide-react";
 
 const links = [
-  { href: "/account", label: "Mon profil", icon: UserRound },
-  { href: "/account/orders", label: "Mes commandes", icon: Package },
-  { href: "/account/addresses", label: "Mes adresses", icon: MapPin },
-  { href: "/account/favorites", label: "Mes favoris", icon: Heart },
+  { href: "/account", label: "الحساب ديالي", icon: UserRound },
+  { href: "/account/orders", label: "الطلبات ديالي", icon: Package },
+  { href: "/account/addresses", label: "العناوين ديالي", icon: MapPin },
+  { href: "/account/favorites", label: "المفضلة", icon: Heart },
 ];
 
 export default function AccountNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Navigation du compte" className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:flex-col lg:gap-1">
+    <nav aria-label="قائمة الحساب" className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:flex-col lg:gap-1">
       {links.map(({ href, label, icon: Icon }) => {
         const active = href === "/account" ? pathname === href : pathname.startsWith(href);
         return (

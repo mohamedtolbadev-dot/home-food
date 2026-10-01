@@ -2,12 +2,12 @@ import { deliveryAreas, deliveryTimes } from "@/data/order-options";
 
 export function validateCheckout(form) {
   const errors = {};
-  if (form.name.trim().length < 2) errors.name = "Indiquez votre nom complet.";
+  if (form.name.trim().length < 2) errors.name = "دخل سميتك كاملة.";
   const digits = form.phone.replace(/\D/g, "");
-  if (!/^[+()\d\s.-]+$/.test(form.phone) || digits.length < 8 || digits.length > 15) errors.phone = "Entrez un numéro de téléphone valide.";
-  if (!Object.hasOwn(deliveryAreas, form.city)) errors.city = "Choisissez une ville.";
-  if (!(deliveryAreas[form.city] ?? []).includes(form.neighborhood)) errors.neighborhood = "Choisissez un quartier.";
-  if (form.address.trim().length < 5) errors.address = "Indiquez une adresse de livraison complète.";
-  if (!deliveryTimes.includes(form.deliveryTime)) errors.deliveryTime = "Choisissez un créneau de livraison.";
+  if (!/^[+()\d\s.-]+$/.test(form.phone) || digits.length < 8 || digits.length > 15) errors.phone = "دخل رقم هاتف صحيح.";
+  if (!Object.hasOwn(deliveryAreas, form.city)) errors.city = "ختار المدينة.";
+  if (!(deliveryAreas[form.city] ?? []).includes(form.neighborhood)) errors.neighborhood = "ختار الحي.";
+  if (form.address.trim().length < 5) errors.address = "دخل عنوان التوصيل كامل.";
+  if (!deliveryTimes.includes(form.deliveryTime)) errors.deliveryTime = "ختار وقت التوصيل.";
   return errors;
 }

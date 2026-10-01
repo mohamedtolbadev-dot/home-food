@@ -19,8 +19,8 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   const cook = cooks.find((item) => item.id === id);
   return cook
-    ? { title: `${cook.name} — Cuisinière locale`, description: cook.introduction }
-    : { title: "Cuisinière introuvable" };
+    ? { title: `${cook.name} — طباخة من الحومة`, description: cook.introduction }
+    : { title: "ما لقيناش الطباخة" };
 }
 
 export default async function CookProfilePage({ params }) {
@@ -49,8 +49,8 @@ export default async function CookProfilePage({ params }) {
           </aside>
         </div>
       </main>
-      {availableToday.length > 0 && <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--color-line)] bg-[var(--color-canvas)] p-3 sm:hidden"><Link href="#plats-du-jour" className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-4 text-sm font-semibold text-white action-feedback">Voir les plats <ArrowRight size={15} aria-hidden="true" /></Link></div>}
-      <footer className={`border-t border-[var(--color-line)] bg-[#f8f8f9] px-5 py-5 text-center text-[11px] text-[var(--color-muted)] sm:px-8 ${availableToday.length > 0 ? "pb-20 sm:pb-5" : ""}`}>Profil, avis et disponibilités à titre de démonstration.</footer>
+      {availableToday.length > 0 && <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--color-line)] bg-[var(--color-canvas)] p-3 sm:hidden"><Link href="#plats-du-jour" className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-4 text-sm font-semibold text-white action-feedback">شوف الماكلة <ArrowRight size={15} aria-hidden="true" /></Link></div>}
+      <footer className={`border-t border-[var(--color-line)] bg-[#f8f8f9] px-5 py-5 text-center text-[11px] text-[var(--color-muted)] sm:px-8 ${availableToday.length > 0 ? "pb-20 sm:pb-5" : ""}`}>البروفايل والآراء والتوفر غير أمثلة للتجربة.</footer>
     </>
   );
 }

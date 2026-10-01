@@ -11,7 +11,7 @@ export default function CookCard({ cook }) {
         <div className="flex items-start justify-between gap-2">
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
             <h3 className="text-sm font-semibold tracking-[-0.02em]"><Link href={`/cooks/${cook.id}`} className="hover:text-[var(--color-brand)]">{cook.name}</Link></h3>
-            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--color-brand)]"><BadgeCheck size={13} aria-hidden="true" /> Profil vérifié</span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--color-brand)]"><BadgeCheck size={13} aria-hidden="true" /> بروفايل موثوق</span>
           </div>
           <FavoriteButton type="cook" id={cook.id} />
         </div>

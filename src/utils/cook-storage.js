@@ -39,7 +39,7 @@ export function readCookOnboarding() {
     neighborhood: "Agdal",
     photo: "",
     description: "",
-    cuisineType: "Marocain",
+    cuisineType: "مغربي",
     specialties: [],
     availabilityDays: [],
     availabilityHours: "",

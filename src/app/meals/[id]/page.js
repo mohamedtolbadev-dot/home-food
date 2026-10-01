@@ -9,7 +9,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const meal = meals.find((item) => item.id === id);
-  return meal ? { title: meal.name, description: meal.description } : { title: "Plat introuvable" };
+  return meal ? { title: meal.name, description: meal.description } : { title: "ما لقيناش الطبق" };
 }
 
 export default async function MealPage({ params }) {

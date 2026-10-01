@@ -7,9 +7,9 @@ export default function MealCard({ meal }) {
   return (
     <article className="group card-surface card-interactive overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white hover:border-[#dedee2]">
       <div className="relative">
-        <Link href={`/meals/${meal.id}`} aria-label={`Voir ${meal.name}`} className="relative block aspect-[1.38/1] overflow-hidden bg-[#f1f1f2]">
+        <Link href={`/meals/${meal.id}`} aria-label={`شوف ${meal.name}`} className="relative block aspect-[1.38/1] overflow-hidden bg-[#f1f1f2]">
           <Image src={meal.image} alt={meal.imageAlt} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-          <span className="absolute left-3 top-3 rounded-full bg-[var(--color-canvas)] px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink)]">Fait maison</span>
+          <span className="absolute left-3 top-3 rounded-full bg-[var(--color-canvas)] px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink)]">ماكلة ديال الدار</span>
           <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-[var(--color-canvas)] px-2 py-1.5 text-xs font-semibold"><Star size={12} fill="currentColor" className="text-[var(--color-brand)]" aria-hidden="true" /> {meal.rating}</span>
         </Link>
         <FavoriteButton type="meal" id={meal.id} className="absolute right-3 top-12" />
@@ -29,12 +29,12 @@ export default function MealCard({ meal }) {
           </div>
           <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[11px] text-[var(--color-muted)]">
             <span className={meal.portionsAvailable === 0 ? "text-[var(--color-muted)]" : meal.portionsAvailable <= 2 ? "font-medium text-[var(--color-brand)]" : ""}>
-              {meal.portionsAvailable === 0 ? "Épuisé" : meal.portionsAvailable <= 2 ? `Plus que ${meal.portionsAvailable} portions` : `${meal.portionsAvailable} portions disponibles`}
+              {meal.portionsAvailable === 0 ? "سالاو" : meal.portionsAvailable <= 2 ? `باقي غير ${meal.portionsAvailable}` : `${meal.portionsAvailable} وجبات متوفرة`}
             </span>
             <span className="inline-flex items-center gap-1"><Clock3 size={12} aria-hidden="true" /> {meal.readyAt}</span>
           </div>
           <Link href={`/meals/${meal.id}`} className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand)] hover:underline">
-            Voir le plat <ArrowUpRight size={14} aria-hidden="true" />
+            شوف الطبق <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
         </div>
       </div>

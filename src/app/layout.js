@@ -11,16 +11,15 @@ const josefinSans = Josefin_Sans({
 
 export const metadata = {
   title: {
-    default: "Dar Matbakh — Cuisine maison au Maroc",
-    template: "%s | Dar Matbakh",
+    default: "دار مطبخ — ماكلة الدار فالمغرب",
+    template: "%s | دار مطبخ",
   },
-  description:
-    "Découvrez les plats faits maison par les cuisinières et cuisiniers de votre quartier.",
+  description: "شوف الماكلة ديال الدار لي كيوجدوها الطباخات والطباخين حداك.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr-MA" className={josefinSans.variable}>
+    <html lang="ar-MA" dir="rtl" className={josefinSans.variable}>
       <body><OrderProvider>{children}</OrderProvider></body>
     </html>
   );

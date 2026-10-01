@@ -6,7 +6,7 @@ const defaultMeal = {
   description: "",
   price: "",
   quantityAvailable: "",
-  category: "Marocain",
+  category: "مغربي",
   date: new Date().toISOString().slice(0, 10),
   preparationTime: "12:30",
   image: "",
@@ -57,12 +57,12 @@ export default function MealForm({ initialData = null, onSubmit, onClose }) {
     };
 
     if (!nextMeal.name || !nextMeal.description || !nextMeal.price || !nextMeal.quantityAvailable) {
-      setError("Complétez tous les champs obligatoires pour enregistrer votre plat.");
+      setError("عمر الخانات الضرورية باش تحفظ الطبق.");
       return;
     }
 
     if (!nextMeal.image) {
-      setError("Ajoutez une photo pour rendre le plat plus attrayant.");
+      setError("زيد تصويرة باش يبان الطبق زوين.");
       return;
     }
 
@@ -78,10 +78,10 @@ export default function MealForm({ initialData = null, onSubmit, onClose }) {
       <div className="w-full max-w-2xl overflow-hidden rounded-[28px] border border-[var(--color-line)] bg-white shadow-[0_18px_40px_rgba(32,32,36,0.12)]">
         <div className="flex items-center justify-between border-b border-[var(--color-line)] px-4 py-3 sm:px-6">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">Plat</p>
-            <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--color-ink)]">{initialData ? "Modifier le plat" : "Ajouter un plat"}</h3>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">طبق</p>
+            <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--color-ink)]">{initialData ? "بدل الطبق" : "زيد طبق"}</h3>
           </div>
-          <button type="button" onClick={onClose} className="inline-flex size-9 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-muted)] hover:text-[var(--color-brand)]" aria-label="Fermer">
+          <button type="button" onClick={onClose} className="inline-flex size-9 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-muted)] hover:text-[var(--color-brand)]" aria-label="سد">
             <X size={16} aria-hidden="true" />
           </button>
         </div>
@@ -89,70 +89,76 @@ export default function MealForm({ initialData = null, onSubmit, onClose }) {
         <form onSubmit={handleSubmit} className="space-y-5 p-4 sm:p-6">
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block sm:col-span-2">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Nom du plat</span>
-              <input value={form.name} onChange={(event) => updateField("name", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Tajine de poulet" />
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">سميّة الطبق</span>
+              <input value={form.name} onChange={(event) => updateField("name", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="طاجين الدجاج" />
             </label>
 
             <label className="block sm:col-span-2">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Description</span>
-              <textarea value={form.description} onChange={(event) => updateField("description", event.target.value)} rows={3} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Décrivez votre plat et son goût maison." />
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">عرف بالطبق</span>
+              <textarea value={form.description} onChange={(event) => updateField("description", event.target.value)} rows={3} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="هضر على الطبق والمذاق ديالو." />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Prix</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">الثمن</span>
               <input type="number" min="0" value={form.price} onChange={(event) => updateField("price", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]" placeholder="58" />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Quantité disponible</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">شحال من وجبة كاينة</span>
               <input type="number" min="0" value={form.quantityAvailable} onChange={(event) => updateField("quantityAvailable", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]" placeholder="10" />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Catégorie</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">النوع</span>
               <select value={form.category} onChange={(event) => updateField("category", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]">
-                <option value="Marocain">Marocain</option>
-                <option value="Traditionnel">Traditionnel</option>
-                <option value="Healthy">Healthy</option>
-                <option value="Petit-déjeuner">Petit-déjeuner</option>
-                <option value="Végétarien">Végétarien</option>
-                <option value="Dessert">Dessert</option>
+                <option value="مغربي">مغربي</option>
+                <option value="تقليدي">تقليدي</option>
+                <option value="صحي">صحي</option>
+                <option value="الفطور">الفطور</option>
+                <option value="نباتي">نباتي</option>
+                <option value="حلويات">حلويات</option>
+                <option value="Marocain">مغربي</option>
+                <option value="Traditionnel">تقليدي</option>
+                <option value="Petit-déjeuner">الفطور</option>
+                <option value="Végétarien">نباتي</option>
+                <option value="Dessert">حلويات</option>
+                <option value="Healthy">صحي</option>
               </select>
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Date</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">التاريخ</span>
               <input type="date" value={form.date} onChange={(event) => updateField("date", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]" />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Heure de préparation</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">وقت التحضير</span>
               <input type="time" value={form.preparationTime} onChange={(event) => updateField("preparationTime", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]" />
             </label>
 
             <label className="block sm:col-span-2">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Allergènes / ingrédients</span>
-              <input value={form.allergens} onChange={(event) => updateField("allergens", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Arachides, lait, gluten..." />
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">مكونات ممكن تدير الحساسية</span>
+              <input value={form.allergens} onChange={(event) => updateField("allergens", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="كاوكاو، حليب، غلوتين…" />
             </label>
 
             <label className="block sm:col-span-2">
-              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Photo</span>
+              <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">تصويرة</span>
               <div className="flex flex-col gap-3 rounded-2xl border border-dashed border-[var(--color-line)] bg-[#f8f8f9] p-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
                   <span className="flex size-10 items-center justify-center rounded-xl bg-white text-[var(--color-brand)] shadow-[0_1px_2px_rgba(32,32,36,0.04)]">
                     <ImagePlus size={18} aria-hidden="true" />
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-[var(--color-ink)]">Télécharger une image</p>
-                    <p className="text-[11px] text-[var(--color-muted)]">JPG ou PNG</p>
+                    <p className="text-sm font-medium text-[var(--color-ink)]">اختار تصويرة</p>
+                    <p className="text-[11px] text-[var(--color-muted)]">JPG ولا PNG</p>
                   </div>
                 </div>
 
-                <input type="file" accept="image/*" onChange={handleImageChange} className="block w-full max-w-[180px] text-xs text-[var(--color-muted)] file:mr-3 file:rounded-xl file:border-0 file:bg-[var(--color-brand)] file:px-3 file:py-2 file:text-xs file:font-semibold file:text-white" />
+                <label className="inline-flex min-h-10 cursor-pointer items-center justify-center rounded-xl bg-[var(--color-brand)] px-3 text-xs font-semibold text-white">اختار ملف<input type="file" accept="image/*" onChange={handleImageChange} className="sr-only" /></label>
               </div>
               {imagePreview && (
                 <div className="mt-3 overflow-hidden rounded-xl border border-[var(--color-line)] bg-[#f8f8f9] p-2">
-                  <img src={imagePreview} alt="Aperçu du plat" className="h-28 w-full rounded-lg object-cover" />
+                  <img src={imagePreview} alt="معاينة الطبق" className="h-28 w-full rounded-lg object-cover" />
                 </div>
               )}
             </label>
@@ -162,10 +168,10 @@ export default function MealForm({ initialData = null, onSubmit, onClose }) {
 
           <div className="flex flex-col-reverse gap-3 border-t border-[var(--color-line)] pt-4 sm:flex-row sm:justify-end">
             <button type="button" onClick={onClose} className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--color-line)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7]">
-              Annuler
+              رجع
             </button>
             <button type="submit" className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">
-              {initialData ? "Enregistrer" : "Ajouter le plat"}
+              {initialData ? "حفظ" : "زيد الطبق"}
             </button>
           </div>
         </form>

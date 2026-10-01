@@ -12,11 +12,11 @@ import MealForm from "@/components/cook/meal-form";
 import { readCookMeals, readCookOrders, readCookProfile, writeCookMeals, writeCookOrders } from "@/utils/cook-storage";
 
 const navItems = [
-  { href: "#overview", label: "Tableau de bord" },
-  { href: "#meals", label: "Mes plats" },
-  { href: "#orders", label: "Commandes" },
-  { href: "#availability", label: "Disponibilités" },
-  { href: "#profile", label: "Mon profil" },
+  { href: "#overview", label: "الرئيسية" },
+  { href: "#meals", label: "الأطباق ديالي" },
+  { href: "#orders", label: "الطلبات الجديدة" },
+  { href: "#availability", label: "أوقات الخدمة" },
+  { href: "#profile", label: "البروفايل ديالي" },
 ];
 
 export default function CookDashboard() {
@@ -90,7 +90,7 @@ export default function CookDashboard() {
 
   return (
     <>
-      <CookHeader title="Mon tableau de bord" mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} navItems={navItems} />
+      <CookHeader title="فضائي" mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} navItems={navItems} />
 
       <main className="mx-auto max-w-7xl px-5 pb-16 pt-6 sm:px-8 lg:px-10">
         <div className="flex gap-8">
@@ -101,40 +101,40 @@ export default function CookDashboard() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative size-14 overflow-hidden rounded-full border border-[var(--color-line)] bg-[#f8f8f9]">
-                    {profile?.photo ? <img src={profile.photo} alt="Votre photo" className="h-full w-full object-cover" /> : <span className="flex h-full w-full items-center justify-center text-[10px] font-semibold text-[var(--color-muted)]">PP</span>}
+                    {profile?.photo ? <img src={profile.photo} alt="تصويرتك" className="h-full w-full object-cover" /> : <span className="flex h-full w-full items-center justify-center text-[10px] font-semibold text-[var(--color-muted)]">صورة</span>}
                   </div>
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">Bienvenue</p>
-                    <h1 className="mt-1 text-2xl font-semibold tracking-[-0.05em] text-[var(--color-ink)]">{profile ? `${profile.firstName} ${profile.lastName}` : "Votre profil"}</h1>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">مرحبا بيك</p>
+                    <h1 className="mt-1 text-2xl font-semibold tracking-[-0.05em] text-[var(--color-ink)]">{profile ? `${profile.firstName} ${profile.lastName}` : "البروفايل ديالك"}</h1>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   <button type="button" onClick={openCreateMealModal} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-4 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">
-                    <Plus size={15} aria-hidden="true" /> Ajouter un plat
+                    <Plus size={15} aria-hidden="true" /> زيد طبق
                   </button>
                   <Link href="/cook/onboarding" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--color-line)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7]">
-                    <PencilLine size={15} aria-hidden="true" /> Modifier mon profil
+                    <PencilLine size={15} aria-hidden="true" /> بدل البروفايل ديالي
                   </Link>
                 </div>
               </div>
             </section>
 
             <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              <CookStatCard label="Commandes aujourd'hui" value={overview.todaysOrders} helper="Réceptionnées" accent />
-              <CookStatCard label="Plats publiés" value={overview.mealsPublishedToday} helper="Aujourd’hui" />
-              <CookStatCard label="Portions dispo." value={overview.availablePortions} helper="En stock" />
-              <CookStatCard label="Revenus estimés" value={`${overview.todaysRevenue} DH`} helper="Aujourd’hui" />
+              <CookStatCard label="طلبات اليوم" value={overview.todaysOrders} helper="لي وصلوك" accent />
+              <CookStatCard label="الأطباق لي زدتي" value={overview.mealsPublishedToday} helper="اليوم" />
+              <CookStatCard label="الكمية لي باقية" value={overview.availablePortions} helper="فالستوك" />
+              <CookStatCard label="المدخول التقريبي" value={`${overview.todaysRevenue} DH`} helper="اليوم" />
             </section>
 
             <section id="meals" className="rounded-[28px] border border-[var(--color-line)] bg-white p-4 shadow-[0_1px_2px_rgba(32,32,36,0.04)] sm:p-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">Aujourd’hui</p>
-                  <h2 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">Mes plats</h2>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">اليوم</p>
+                  <h2 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">الأطباق ديالي</h2>
                 </div>
                 <button type="button" onClick={openCreateMealModal} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-[var(--color-line)] bg-white px-3.5 text-xs font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7]">
-                  <Plus size={14} aria-hidden="true" /> Ajouter un plat
+                  <Plus size={14} aria-hidden="true" /> زيد طبق
                 </button>
               </div>
 
@@ -146,11 +146,11 @@ export default function CookDashboard() {
             <section id="orders" className="rounded-[28px] border border-[var(--color-line)] bg-white p-4 shadow-[0_1px_2px_rgba(32,32,36,0.04)] sm:p-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">Suivi</p>
-                  <h2 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">Commandes</h2>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">التتبع</p>
+                  <h2 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">الطلبات الجديدة</h2>
                 </div>
                 <button type="button" onClick={() => document.getElementById("orders")?.scrollIntoView({ behavior: "smooth", block: "start" })} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-[var(--color-line)] bg-white px-3.5 text-xs font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7]">
-                  <ShoppingBag size={14} aria-hidden="true" /> Voir les commandes
+                  <ShoppingBag size={14} aria-hidden="true" /> شوف الطلبات
                 </button>
               </div>
               <div className="mt-5">
@@ -162,24 +162,24 @@ export default function CookDashboard() {
               <div className="rounded-[28px] border border-[var(--color-line)] bg-white p-4 shadow-[0_1px_2px_rgba(32,32,36,0.04)] sm:p-6">
                 <div className="flex items-center gap-2 text-[var(--color-brand)]">
                   <CalendarDays size={15} aria-hidden="true" />
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em]">Disponibilités</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em]">أوقات الخدمة</p>
                 </div>
-                <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">Planning</h3>
+                <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">البرنامج</h3>
                 <div className="mt-4 space-y-2 text-sm text-[var(--color-muted)]">
-                  <p><span className="font-semibold text-[var(--color-ink)]">Jours :</span> {profile?.availabilityDays?.join(", ") || "À définir"}</p>
-                  <p><span className="font-semibold text-[var(--color-ink)]">Horaires :</span> {profile?.availabilityHours || "À définir"}</p>
-                  <p><span className="font-semibold text-[var(--color-ink)]">Portions :</span> {profile?.portionsPerDay || 0} / jour</p>
+                  <p><span className="font-semibold text-[var(--color-ink)]">الأيام:</span> {profile?.availabilityDays?.join("، ") || "ما تحددوش"}</p>
+                  <p><span className="font-semibold text-[var(--color-ink)]">الوقت:</span> {profile?.availabilityHours || "ما تحددش"}</p>
+                  <p><span className="font-semibold text-[var(--color-ink)]">الكمية:</span> {profile?.portionsPerDay || 0} فالنهار</p>
                 </div>
               </div>
 
               <div id="profile" className="rounded-[28px] border border-[var(--color-line)] bg-white p-4 shadow-[0_1px_2px_rgba(32,32,36,0.04)] sm:p-6">
                 <div className="flex items-center gap-2 text-[var(--color-brand)]">
                   <ChartColumnBig size={15} aria-hidden="true" />
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em]">Mon profil</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em]">البروفايل ديالي</p>
                 </div>
-                <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">Présentation</h3>
+                <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--color-ink)]">التعريف بيا</h3>
                 <div className="mt-4 rounded-2xl border border-[var(--color-line)] bg-[#f8f8f9] p-3">
-                  <p className="text-sm leading-6 text-[var(--color-ink)]">{profile?.description || "Votre description cuisine apparaîtra ici."}</p>
+                  <p className="text-sm leading-6 text-[var(--color-ink)]">{profile?.description || "التعريف ديالك غادي يبان هنا."}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {(profile?.specialties || []).map((specialty) => (
                       <span key={specialty} className="rounded-full border border-[var(--color-line)] bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--color-muted)]">{specialty}</span>
@@ -187,8 +187,8 @@ export default function CookDashboard() {
                   </div>
                 </div>
                 <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[var(--color-muted)]">
-                  <span className="inline-flex items-center gap-1.5"><MapPin size={12} aria-hidden="true" /> {profile?.neighborhood || "Quartier"}, {profile?.city || "Ville"}</span>
-                  <span className="inline-flex items-center gap-1.5"><Clock3 size={12} aria-hidden="true" /> {profile?.availabilityHours || "Horaires"}</span>
+                  <span className="inline-flex items-center gap-1.5"><MapPin size={12} aria-hidden="true" /> {profile?.neighborhood || "الحي"}, {profile?.city || "المدينة"}</span>
+                  <span className="inline-flex items-center gap-1.5"><Clock3 size={12} aria-hidden="true" /> {profile?.availabilityHours || "الوقت"}</span>
                 </div>
               </div>
             </section>

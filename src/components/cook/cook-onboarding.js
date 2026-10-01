@@ -7,37 +7,39 @@ import { deliveryAreas } from "@/data/order-options";
 import { writeCookOnboarding, readCookOnboarding, writeCookProfile } from "@/utils/cook-storage";
 
 const steps = [
-  { label: "Infos", icon: UserRound },
-  { label: "Profil", icon: Camera },
-  { label: "Disponibilité", icon: MapPin },
-  { label: "Confirmation", icon: Check },
+  { label: "المعلومات", icon: UserRound },
+  { label: "البروفايل", icon: Camera },
+  { label: "أوقات الخدمة", icon: MapPin },
+  { label: "التأكيد", icon: Check },
 ];
 
-const cuisineOptions = ["Marocain", "Traditionnel", "Healthy", "Végétarien", "Petit-déjeuner", "Dessert"];
-const specialtyOptions = ["Tajines", "Couscous", "Desserts", "Plats mijotés", "Sandwichs", "Salades", "Petit-déjeuner", "Healthy"];
-const daysOptions = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+const cuisineOptions = ["مغربي", "تقليدي", "Healthy", "نباتي", "الفطور", "حلويات"];
+const specialtyOptions = ["طواجن", "كسكس", "حلويات", "ماكلة مطيبة على مهل", "سندويتشات", "سلطات", "الفطور", "Healthy"];
+const daysOptions = ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"];
+const oldLabels = { Marocain: "مغربي", Traditionnel: "تقليدي", Healthy: "صحي", Végétarien: "نباتي", "Petit-déjeuner": "الفطور", Dessert: "حلويات", Tajines: "طواجن", Couscous: "كسكس", Desserts: "حلويات", "Plats mijotés": "ماكلة مطيبة على مهل", Sandwichs: "سندويتشات", Salades: "سلطات", Lundi: "الاثنين", Mardi: "الثلاثاء", Mercredi: "الأربعاء", Jeudi: "الخميس", Vendredi: "الجمعة", Samedi: "السبت", Dimanche: "الأحد" };
+const legacyCuisineOptions = ["Marocain", "Traditionnel", "Healthy", "Végétarien", "Petit-déjeuner", "Dessert"];
 
 function validateStep(stepIndex, values) {
   const nextErrors = {};
 
   if (stepIndex === 0) {
-    if (!values.firstName?.trim()) nextErrors.firstName = "Le prénom est requis.";
-    if (!values.lastName?.trim()) nextErrors.lastName = "Le nom est requis.";
-    if (!values.phone?.trim()) nextErrors.phone = "Le téléphone est requis.";
-    if (!values.city?.trim()) nextErrors.city = "La ville est requise.";
-    if (!values.neighborhood?.trim()) nextErrors.neighborhood = "Le quartier est requis.";
+    if (!values.firstName?.trim()) nextErrors.firstName = "دخل الاسم ديالك.";
+    if (!values.lastName?.trim()) nextErrors.lastName = "دخل النسب ديالك.";
+    if (!values.phone?.trim()) nextErrors.phone = "دخل رقم الهاتف.";
+    if (!values.city?.trim()) nextErrors.city = "دخل المدينة.";
+    if (!values.neighborhood?.trim()) nextErrors.neighborhood = "دخل الحي.";
   }
 
   if (stepIndex === 1) {
-    if (!values.description?.trim()) nextErrors.description = "Ajoutez une description.";
-    if (!values.cuisineType?.trim()) nextErrors.cuisineType = "Choisissez un type de cuisine.";
-    if (!values.specialties?.length) nextErrors.specialties = "Sélectionnez au moins une spécialité.";
+    if (!values.description?.trim()) nextErrors.description = "عرفنا على الماكلة ديالك.";
+    if (!values.cuisineType?.trim()) nextErrors.cuisineType = "ختار نوع الماكلة.";
+    if (!values.specialties?.length) nextErrors.specialties = "ختار تخصص واحد على الأقل.";
   }
 
   if (stepIndex === 2) {
-    if (!values.availabilityDays?.length) nextErrors.availabilityDays = "Sélectionnez au moins un jour.";
-    if (!values.availabilityHours?.trim()) nextErrors.availabilityHours = "Renseignez vos horaires.";
-    if (!values.portionsPerDay || Number(values.portionsPerDay) <= 0) nextErrors.portionsPerDay = "Indiquez une quantité valide.";
+    if (!values.availabilityDays?.length) nextErrors.availabilityDays = "ختار نهار واحد على الأقل.";
+    if (!values.availabilityHours?.trim()) nextErrors.availabilityHours = "دخل الأوقات لي كتخدم فيها.";
+    if (!values.portionsPerDay || Number(values.portionsPerDay) <= 0) nextErrors.portionsPerDay = "دخل كمية صحيحة.";
   }
 
   return nextErrors;
@@ -132,11 +134,11 @@ export default function CookOnboarding() {
       <div className="mb-7 rounded-2xl border border-[var(--color-line)] bg-white p-4 shadow-[0_1px_2px_rgba(32,32,36,0.04)] sm:p-6">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">Devenir cuisinière</p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-[var(--color-ink)] sm:text-3xl">Créer votre profil</h1>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">سجل كطباخة</p>
+            <h1 className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-[var(--color-ink)] sm:text-3xl">صايب البروفايل ديالك</h1>
           </div>
           <div className="text-right">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Étape</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">المرحلة</p>
             <p className="text-sm font-semibold text-[var(--color-ink)]">{step + 1} / {steps.length}</p>
           </div>
         </div>
@@ -145,7 +147,7 @@ export default function CookOnboarding() {
           <div className="h-full rounded-full bg-[var(--color-brand)] transition-all duration-200" style={{ width: `${progress}%` }} />
         </div>
 
-        <div className="mt-5 flex gap-2 sm:gap-3">
+        <div className="mt-5 flex flex-wrap gap-2 sm:gap-3">
           {steps.map((item, index) => {
             const Icon = item.icon;
             const active = index === step;
@@ -167,30 +169,30 @@ export default function CookOnboarding() {
           <div className="space-y-5">
             <div className="flex items-center gap-2 text-[var(--color-brand)]">
               <Phone size={15} aria-hidden="true" />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em]">Informations personnelles</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]">المعلومات الشخصية</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Prénom</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">الاسم</span>
                 <input value={form.firstName} onChange={(event) => updateField("firstName", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Khadija" />
                 {errors.firstName && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.firstName}</span>}
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Nom</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">النسب</span>
                 <input value={form.lastName} onChange={(event) => updateField("lastName", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Bennis" />
                 {errors.lastName && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.lastName}</span>}
               </label>
 
               <label className="block sm:col-span-2">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Téléphone</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">رقم الهاتف</span>
                 <input type="tel" value={form.phone} onChange={(event) => updateField("phone", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="06 00 00 00 00" />
                 {errors.phone && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.phone}</span>}
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Ville</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">المدينة</span>
                 <select value={form.city} onChange={(event) => updateField("city", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]">
                   {Object.keys(deliveryAreas).map((city) => <option key={city} value={city}>{city}</option>)}
                 </select>
@@ -198,7 +200,7 @@ export default function CookOnboarding() {
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Quartier</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">الحي</span>
                 <select value={form.neighborhood} onChange={(event) => updateField("neighborhood", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]">
                   {(deliveryAreas[form.city] ?? ["Agdal"]).map((neighborhood) => (
                     <option key={neighborhood} value={neighborhood}>{neighborhood}</option>
@@ -214,38 +216,38 @@ export default function CookOnboarding() {
           <div className="space-y-5">
             <div className="flex items-center gap-2 text-[var(--color-brand)]">
               <Camera size={15} aria-hidden="true" />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em]">Profil cuisine</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]">بروفايل الماكلة</p>
             </div>
 
             <div className="grid gap-4 lg:grid-cols-[180px_1fr] lg:items-start">
               <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[var(--color-line)] bg-[#f8f8f9] p-4">
                 <div className="relative h-28 w-28 overflow-hidden rounded-full border border-[var(--color-line)] bg-white">
-                  {form.photo ? <img src={form.photo} alt="Aperçu de la photo" className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center text-[var(--color-muted)]">Photo</div>}
+                  {form.photo ? <img src={form.photo} alt="معاينة التصويرة" className="h-full w-full object-cover" /> : <div className="flex h-full w-full items-center justify-center text-[var(--color-muted)]">تصويرة</div>}
                 </div>
                 <label className="mt-3 inline-flex min-h-10 cursor-pointer items-center justify-center rounded-xl border border-[var(--color-line)] bg-white px-3 text-xs font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7]">
-                  Ajouter une photo
+                  زيد تصويرة
                   <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" />
                 </label>
               </div>
 
               <div className="space-y-4">
                 <label className="block">
-                  <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Description</span>
-                  <textarea value={form.description} onChange={(event) => updateField("description", event.target.value)} rows={5} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Parlez de votre cuisine, de vos recettes et de votre façon de cuisiner." />
+                  <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">عرفينا على راسك</span>
+                  <textarea value={form.description} onChange={(event) => updateField("description", event.target.value)} rows={5} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="هضري على الماكلة ديالك، الوصفات لي كتعجبك وكيفاش كتوجديهم." />
                   {errors.description && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.description}</span>}
                 </label>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block">
-                    <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Type de cuisine</span>
+                    <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">نوع الماكلة</span>
                     <select value={form.cuisineType} onChange={(event) => updateField("cuisineType", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]">
-                      {cuisineOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                      {[...cuisineOptions, ...legacyCuisineOptions].map((option) => <option key={option} value={option}>{oldLabels[option] ?? option}</option>)}
                     </select>
                     {errors.cuisineType && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.cuisineType}</span>}
                   </label>
 
                   <div className="block">
-                    <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Spécialités</span>
+                    <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">التخصصات</span>
                     <div className="flex flex-wrap gap-2">
                       {specialtyOptions.map((specialty) => (
                         <button
@@ -254,7 +256,7 @@ export default function CookOnboarding() {
                           onClick={() => toggleSpecialty(specialty)}
                           className={`rounded-full border px-2.5 py-1.5 text-[11px] font-medium ${form.specialties.includes(specialty) ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white" : "border-[var(--color-line)] bg-white text-[var(--color-muted)] hover:border-[#d2d2d7]"}`}
                         >
-                          {specialty}
+                          {oldLabels[specialty] ?? specialty}
                         </button>
                       ))}
                     </div>
@@ -270,12 +272,12 @@ export default function CookOnboarding() {
           <div className="space-y-5">
             <div className="flex items-center gap-2 text-[var(--color-brand)]">
               <MapPin size={15} aria-hidden="true" />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em]">Disponibilité</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]">أوقات الخدمة</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Jours disponibles</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">الأيام لي كتخدمي</span>
                 <div className="flex flex-wrap gap-2">
                   {daysOptions.map((day) => (
                     <button
@@ -284,7 +286,7 @@ export default function CookOnboarding() {
                       onClick={() => toggleDay(day)}
                       className={`rounded-xl border px-3 py-2 text-xs font-medium ${form.availabilityDays.includes(day) ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white" : "border-[var(--color-line)] bg-white text-[var(--color-muted)] hover:border-[#d2d2d7]"}`}
                     >
-                      {day}
+                      {oldLabels[day] ?? day}
                     </button>
                   ))}
                 </div>
@@ -292,13 +294,13 @@ export default function CookOnboarding() {
               </div>
 
               <label className="block sm:col-span-2">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Horaires</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">الأوقات</span>
                 <input value={form.availabilityHours} onChange={(event) => updateField("availabilityHours", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="12:00 - 18:00" />
                 {errors.availabilityHours && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.availabilityHours}</span>}
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">Portions par jour</span>
+                <span className="mb-2 block text-xs font-semibold text-[var(--color-ink)]">شحال من وجبة فالنهار</span>
                 <input type="number" min="1" value={form.portionsPerDay} onChange={(event) => updateField("portionsPerDay", event.target.value)} className="h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none focus:border-[var(--color-brand)]" placeholder="24" />
                 {errors.portionsPerDay && <span className="mt-1 block text-xs text-[var(--color-brand)]">{errors.portionsPerDay}</span>}
               </label>
@@ -310,38 +312,38 @@ export default function CookOnboarding() {
           <div className="space-y-5">
             <div className="flex items-center gap-2 text-[var(--color-brand)]">
               <Check size={15} aria-hidden="true" />
-              <p className="text-xs font-semibold uppercase tracking-[0.14em]">Confirmation</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]">التأكيد</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-[var(--color-line)] bg-[#f8f8f9] p-4 sm:col-span-2">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Profil</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">البروفايل</p>
                 <div className="mt-3 flex items-center gap-3">
                   <div className="relative size-12 overflow-hidden rounded-full border border-[var(--color-line)] bg-white">
-                    {form.photo ? <img src={form.photo} alt="Preview" className="h-full w-full object-cover" /> : <span className="flex h-full w-full items-center justify-center text-[10px] text-[var(--color-muted)]">PP</span>}
+                    {form.photo ? <img src={form.photo} alt="معاينة التصويرة" className="h-full w-full object-cover" /> : <span className="flex h-full w-full items-center justify-center text-[10px] text-[var(--color-muted)]">صورة</span>}
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-[var(--color-ink)]">{form.firstName || "Prénom"} {form.lastName || "Nom"}</p>
+                    <p className="text-base font-semibold text-[var(--color-ink)]">{form.firstName || "الاسم"} {form.lastName || "النسب"}</p>
                     <p className="text-xs text-[var(--color-muted)]">{form.cuisineType} · {form.city}</p>
                   </div>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-[var(--color-line)] bg-white p-4">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Coordonnées</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">معلومات التواصل</p>
                 <p className="mt-2 text-sm text-[var(--color-ink)]">{form.phone}</p>
                 <p className="mt-1 text-sm text-[var(--color-ink)]">{form.neighborhood}, {form.city}</p>
               </div>
 
               <div className="rounded-2xl border border-[var(--color-line)] bg-white p-4">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Disponibilité</p>
-                <p className="mt-2 text-sm text-[var(--color-ink)]">{form.availabilityDays.join(", ") || "À définir"}</p>
-                <p className="mt-1 text-sm text-[var(--color-ink)]">{form.availabilityHours || "À définir"}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">أوقات الخدمة</p>
+                <p className="mt-2 text-sm text-[var(--color-ink)]">{form.availabilityDays.map((day) => oldLabels[day] ?? day).join("، ") || "ما تحددوش"}</p>
+                <p className="mt-1 text-sm text-[var(--color-ink)]">{form.availabilityHours || "ما تحددش"}</p>
               </div>
 
               <div className="rounded-2xl border border-[var(--color-line)] bg-white p-4 sm:col-span-2">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Description</p>
-                <p className="mt-2 text-sm leading-6 text-[var(--color-ink)]">{form.description || "Ajoutez une description pour présenter votre cuisine."}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">التعريف بيا</p>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-ink)]">{form.description || "زيد تعريف بسيط على الماكلة ديالك."}</p>
               </div>
             </div>
           </div>
@@ -349,16 +351,16 @@ export default function CookOnboarding() {
 
         <div className="mt-8 flex flex-col-reverse gap-3 border-t border-[var(--color-line)] pt-5 sm:flex-row sm:items-center sm:justify-between">
           <button type="button" onClick={handlePrevious} disabled={step === 0} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--color-line)] bg-white px-4 text-sm font-semibold text-[var(--color-ink)] hover:border-[#d2d2d7] disabled:cursor-not-allowed disabled:opacity-40">
-            <ArrowLeft size={15} aria-hidden="true" /> Retour
+            <ArrowLeft size={15} aria-hidden="true" /> رجع
           </button>
 
           {step < steps.length - 1 ? (
             <button type="button" onClick={handleNext} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">
-              Suivant <ArrowRight size={15} aria-hidden="true" />
+              التالي <ArrowRight size={15} aria-hidden="true" />
             </button>
           ) : (
             <button type="button" onClick={handleSubmit} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">
-              Créer mon profil
+              صايب البروفايل ديالي
             </button>
           )}
         </div>

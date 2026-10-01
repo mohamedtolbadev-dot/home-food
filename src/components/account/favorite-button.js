@@ -27,7 +27,7 @@ export default function FavoriteButton({ type, id, className = "" }) {
   }
 
   return (
-    <button type="button" onClick={toggleFavorite} aria-label={favorite ? "Retirer des favoris" : "Ajouter aux favoris"} aria-pressed={favorite} className={`inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[var(--color-brand)] shadow-[0_1px_2px_rgba(32,32,36,0.08)] hover:border-[var(--color-brand)] ${className}`}>
+    <button type="button" onClick={toggleFavorite} aria-label={favorite ? "حيد من المفضلة" : "زيد للمفضلة"} aria-pressed={favorite} className={`inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[var(--color-brand)] shadow-[0_1px_2px_rgba(32,32,36,0.08)] hover:border-[var(--color-brand)] ${className}`}>
       <Heart size={16} fill={favorite ? "currentColor" : "none"} aria-hidden="true" />
     </button>
   );

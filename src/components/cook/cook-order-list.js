@@ -15,38 +15,43 @@ export default function CookOrderList({ orders, onStatusChange }) {
 
           <div className="mt-3 grid gap-2 text-xs text-[var(--color-muted)] sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Plat</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">الطبق</p>
               <p className="mt-1 text-sm text-[var(--color-ink)]">{order.meal}</p>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Quantité</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">الكمية</p>
               <p className="mt-1 text-sm text-[var(--color-ink)]">{order.quantity}</p>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Total</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">الثمن كامل</p>
               <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">{order.total} DH</p>
             </div>
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">Livraison</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">التوصيل</p>
               <p className="mt-1 text-sm text-[var(--color-ink)]">{order.deliveryTime}</p>
             </div>
           </div>
 
           <label className="mt-4 block text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">
-            Modifier le statut
+            بدل الحالة
             <select
               value={order.status}
               onChange={(event) => onStatusChange(order.id, event.target.value)}
               className="mt-2 h-10 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-brand)]"
             >
               {[
-                "Nouvelle",
-                "Confirmée",
-                "En préparation",
-                "Prête",
-                "Terminée",
-              ].map((status) => (
-                <option key={status} value={status}>{status}</option>
+                ["Nouvelle", "جديدة"],
+                ["Confirmée", "تأكدات"],
+                ["En préparation", "كنوجدو فيها"],
+                ["Prête", "واجدة"],
+                ["Terminée", "تسالات"],
+                ["جديدة", "جديدة"],
+                ["تأكدات", "تأكدات"],
+                ["كنوجدو فيها", "كنوجدو فيها"],
+                ["واجدة", "واجدة"],
+                ["تسالات", "تسالات"],
+              ].map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
               ))}
             </select>
           </label>

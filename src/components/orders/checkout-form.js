@@ -58,7 +58,7 @@ export default function CheckoutForm({ items, onConfirmed, total }) {
       }] : [];
     });
     if (!orderItems.length) {
-      setSubmitError("Cette commande ne contient plus de plats disponibles.");
+      setSubmitError("ما بقا حتى طبق متوفر فهاد الطلب.");
       return;
     }
 
@@ -78,7 +78,7 @@ export default function CheckoutForm({ items, onConfirmed, total }) {
     };
 
     if (!writeLastOrder(order)) {
-      setSubmitError("Votre navigateur ne permet pas d’enregistrer la confirmation. Vérifiez ses réglages de stockage puis réessayez.");
+      setSubmitError("المتصفح ما قدرش يحفظ تأكيد الطلب. راجع إعدادات التخزين وعاود.");
       return;
     }
     appendCustomerOrder(order);
@@ -89,31 +89,31 @@ export default function CheckoutForm({ items, onConfirmed, total }) {
   return (
     <form noValidate onSubmit={handleSubmit} className="space-y-7">
       <section aria-labelledby="contact-info-title">
-        <div className="mb-4 flex items-center gap-2"><UserRound size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="contact-info-title" className="text-base font-semibold">Vos coordonnées</h2></div>
+        <div className="mb-4 flex items-center gap-2"><UserRound size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="contact-info-title" className="text-base font-semibold">معلومات التواصل</h2></div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="block"><span className="mb-2 block text-xs font-semibold">Nom complet</span><input autoComplete="name" value={form.name} onChange={(event) => updateField("name", event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} className={`${fieldClass} ${errors.name ? "border-[var(--color-brand)]" : ""}`} placeholder="Votre nom" />{errors.name && <FieldError id="name-error">{errors.name}</FieldError>}</label>
-          <label className="block"><span className="mb-2 block text-xs font-semibold">Téléphone</span><input type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => updateField("phone", event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} className={`${fieldClass} ${errors.phone ? "border-[var(--color-brand)]" : ""}`} placeholder="06 00 00 00 00" />{errors.phone && <FieldError id="phone-error">{errors.phone}</FieldError>}</label>
+          <label className="block"><span className="mb-2 block text-xs font-semibold">السميّة كاملة</span><input autoComplete="name" value={form.name} onChange={(event) => updateField("name", event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} className={`${fieldClass} ${errors.name ? "border-[var(--color-brand)]" : ""}`} placeholder="دخل سميتك" />{errors.name && <FieldError id="name-error">{errors.name}</FieldError>}</label>
+          <label className="block"><span className="mb-2 block text-xs font-semibold">رقم الهاتف</span><input type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => updateField("phone", event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "phone-error" : undefined} className={`${fieldClass} ${errors.phone ? "border-[var(--color-brand)]" : ""}`} placeholder="06 00 00 00 00" />{errors.phone && <FieldError id="phone-error">{errors.phone}</FieldError>}</label>
         </div>
       </section>
 
       <section aria-labelledby="delivery-info-title">
-        <div className="mb-4 flex items-center gap-2"><MapPin size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="delivery-info-title" className="text-base font-semibold">Adresse de livraison</h2></div>
+        <div className="mb-4 flex items-center gap-2"><MapPin size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="delivery-info-title" className="text-base font-semibold">عنوان التوصيل</h2></div>
         <DeliveryLocationSelector city={form.city} neighborhood={form.neighborhood} onCityChange={(city) => { updateField("city", city); updateField("neighborhood", deliveryAreas[city][0]); }} onNeighborhoodChange={(value) => updateField("neighborhood", value)} cityError={errors.city} neighborhoodError={errors.neighborhood} compact />
-        <label className="mt-4 block"><span className="mb-2 block text-xs font-semibold">Adresse</span><input autoComplete="street-address" value={form.address} onChange={(event) => updateField("address", event.target.value)} aria-invalid={Boolean(errors.address)} aria-describedby={errors.address ? "address-error" : undefined} className={`${fieldClass} ${errors.address ? "border-[var(--color-brand)]" : ""}`} placeholder="Rue, numéro, résidence…" />{errors.address && <FieldError id="address-error">{errors.address}</FieldError>}</label>
-        <label className="mt-4 block"><span className="mb-2 block text-xs font-semibold">Instructions de livraison <span className="font-normal text-[var(--color-muted)]">(facultatif)</span></span><textarea value={form.instructions} onChange={(event) => updateField("instructions", event.target.value)} rows={2} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="Étage, point de repère…" /></label>
+        <label className="mt-4 block"><span className="mb-2 block text-xs font-semibold">العنوان</span><input autoComplete="street-address" value={form.address} onChange={(event) => updateField("address", event.target.value)} aria-invalid={Boolean(errors.address)} aria-describedby={errors.address ? "address-error" : undefined} className={`${fieldClass} ${errors.address ? "border-[var(--color-brand)]" : ""}`} placeholder="الزنقة، الرقم، الإقامة…" />{errors.address && <FieldError id="address-error">{errors.address}</FieldError>}</label>
+        <label className="mt-4 block"><span className="mb-2 block text-xs font-semibold">معلومات زيادة للتوصيل <span className="font-normal text-[var(--color-muted)]">(اختياري)</span></span><textarea value={form.instructions} onChange={(event) => updateField("instructions", event.target.value)} rows={2} className="w-full resize-y rounded-xl border border-[var(--color-line)] bg-white px-3 py-2.5 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]" placeholder="الطابق، شي علامة قريبة…" /></label>
       </section>
 
       <section><DeliveryTimeSelector value={form.deliveryTime} onChange={(value) => updateField("deliveryTime", value)} mode="radio" error={errors.deliveryTime} /></section>
 
       <section aria-labelledby="payment-title" className="border-t border-[var(--color-line)] pt-5">
-        <div className="mb-3 flex items-center gap-2"><Banknote size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="payment-title" className="text-base font-semibold">Paiement</h2></div>
-        <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-[var(--color-brand)] bg-white px-3.5"><input type="radio" name="payment" checked readOnly className="accent-[var(--color-brand)]" /><span className="text-sm">Paiement à la livraison</span></label>
-        <p className="mt-2 text-[11px] text-[var(--color-muted)]">Aucun paiement en ligne n’est demandé dans cette démonstration.</p>
+        <div className="mb-3 flex items-center gap-2"><Banknote size={16} className="text-[var(--color-brand)]" aria-hidden="true" /><h2 id="payment-title" className="text-base font-semibold">الخلاص</h2></div>
+        <label className="flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border border-[var(--color-brand)] bg-white px-3.5"><input type="radio" name="payment" checked readOnly className="accent-[var(--color-brand)]" /><span className="text-sm">الخلاص ملي يوصلك الطلب</span></label>
+        <p className="mt-2 text-[11px] text-[var(--color-muted)]">فهاد التجربة ما كاينش الخلاص فالإنترنت.</p>
       </section>
 
       {submitError && <p role="alert" className="rounded-xl border border-[var(--color-line)] bg-[#f8f8f9] p-3 text-xs leading-5 text-[var(--color-brand)]">{submitError}</p>}
-      <button type="submit" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">Confirmer la commande · {total.toLocaleString("fr-FR")} DH</button>
-      <p className="text-center text-[10px] leading-4 text-[var(--color-muted)]">Cette commande est une démonstration locale et ne sera pas transmise à un service de livraison.</p>
+      <button type="submit" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">أكد الطلب · {total.toLocaleString("fr-FR")} DH</button>
+      <p className="text-center text-[10px] leading-4 text-[var(--color-muted)]">هاد الطلب غير للتجربة وما غاديش يمشي لخدمة التوصيل.</p>
     </form>
   );
 }
