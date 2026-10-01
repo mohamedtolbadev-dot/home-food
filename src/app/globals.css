@@ -2,8 +2,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #FF1522;
-  --color-brand-hover: #e20f1b;
+  --color-brand: #FFCD06;
+  --color-brand-hover: #E6B800;
+  --color-secondary: #1E3A5F;
+  --color-brand-text: var(--color-secondary);
+  --color-on-brand: var(--color-secondary);
   --color-canvas: #ffffff;
   --color-ink: #202024;
   --color-muted: #68686f;
@@ -87,14 +90,14 @@ button {
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  border-color: var(--color-brand);
-  outline: 2px solid color-mix(in srgb, var(--color-brand) 20%, transparent);
+  border-color: var(--color-secondary);
+  outline: 2px solid var(--color-secondary);
   outline-offset: 1px;
 }
 
 label.rounded-xl:focus-within {
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 10%, transparent);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary) 10%, transparent);
 }
 
 button:not(:disabled):active {
@@ -108,13 +111,25 @@ button:hover {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-brand);
+  outline: 2px solid var(--color-secondary);
   outline-offset: 3px;
 }
 
 ::selection {
-  color: white;
+  color: var(--color-secondary);
   background: var(--color-brand);
+}
+
+[class~="text-[var(--color-brand)]"] {
+  color: var(--color-brand-text);
+}
+
+[class~="bg-[var(--color-brand)]"].text-white {
+  color: var(--color-on-brand);
+}
+
+[disabled][class~="text-white"] {
+  color: var(--color-ink);
 }
 
 @layer components {

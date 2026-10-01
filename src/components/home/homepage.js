@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
-  ArrowDown, ArrowRight, ArrowUpRight, Clock3, CookingPot,
+  ArrowRight, ArrowUpRight, Clock3, CookingPot,
   Heart, MapPin, Search, ShieldCheck, ShoppingBag, Soup,
 } from "lucide-react";
 import { cooks, meals } from "@/data/homepage";
@@ -42,13 +42,13 @@ export default function Homepage() {
       <SiteHeader />
       <main id="accueil">
         <section className="border-b border-[var(--color-line)]">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.04fr_.96fr] lg:gap-12 lg:px-10 lg:pb-24 lg:pt-20">
-            <div className="max-w-xl">
-              <p className="mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-brand)]"><span className="size-1.5 rounded-full bg-[var(--color-brand)]" /> بنين بحال ديال الدار</p>
+          <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-x-3 gap-y-8 px-5 pb-16 pt-14 sm:gap-x-5 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.9fr)_minmax(0,.8fr)] lg:gap-x-8 lg:gap-y-0 lg:px-10 lg:pb-24 lg:pt-20">
+            <div className="order-1 col-span-2 mx-auto w-full max-w-[680px] text-center lg:col-span-1 lg:col-start-2 lg:row-start-1">
+              <p className="mx-auto mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-brand)]"><span className="size-1.5 rounded-full bg-[var(--color-brand)]" /> بنين بحال ديال الدار</p>
               <h1 className="text-[2.75rem] font-semibold leading-[1.06] tracking-[-0.055em] sm:text-6xl lg:text-[4.1rem]">كتقلب على ماكلة ديال الدار؟ <span className="text-[var(--color-brand)]">راه قراب ليك.</span></h1>
-              <p className="mt-5 max-w-lg text-[15px] leading-7 text-[var(--color-muted)] sm:text-base sm:leading-7">شوف الماكلة لي كيوجدوها الطباخات ديال الحومة كل نهار. ماكلة بنينة وموجدة بعناية.</p>
+              <p className="mx-auto mt-5 max-w-lg text-[15px] leading-7 text-[var(--color-muted)] sm:text-base sm:leading-7">شوف الماكلة لي كيوجدوها الطباخات ديال الحومة كل نهار. ماكلة بنينة وموجدة بعناية.</p>
 
-              <form onSubmit={handleSearch} className="mt-8 flex max-w-[540px] flex-col gap-2 rounded-2xl border border-[var(--color-line)] bg-white p-2 sm:flex-row sm:items-center sm:gap-0">
+              <form onSubmit={handleSearch} className="mx-auto mt-8 flex max-w-[540px] flex-col gap-2 rounded-2xl border border-[var(--color-line)] bg-white p-2 sm:flex-row sm:items-center sm:gap-0">
                 <label htmlFor="meal-search" className="sr-only">قلب على طبق ولا طباخة ولا حي</label>
                 <span className="hidden pl-3 text-[var(--color-brand)] sm:block"><MapPin size={18} aria-hidden="true" /></span>
                 <input
@@ -63,37 +63,33 @@ export default function Homepage() {
                   <Search size={16} aria-hidden="true" /> قلب
                 </button>
               </form>
-              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[var(--color-muted)]">
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[var(--color-muted)]">
                 <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-[var(--color-brand)]" aria-hidden="true" /> طباخات موثوقات</span>
                 <span className="inline-flex items-center gap-1.5"><Clock3 size={14} className="text-[var(--color-brand)]" aria-hidden="true" /> واجدة اليوم</span>
                 <span className="inline-flex items-center gap-1.5"><Heart size={14} className="text-[var(--color-brand)]" aria-hidden="true" /> على خاطرك</span>
               </div>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <a href="#plats-du-jour" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">شوف الماكلة <ArrowRight size={15} aria-hidden="true" /></a>
                 <a href="#devenir-cuisinier" className="inline-flex min-h-11 items-center gap-2 px-2 text-sm font-semibold text-[var(--color-ink)] hover:text-[var(--color-brand)]">كنطيب فالدار <ArrowUpRight size={15} aria-hidden="true" /></a>
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[540px] lg:ml-auto">
-              <div className="grid grid-cols-[1fr_.76fr] items-center gap-3 sm:gap-4">
-                <figure className="relative overflow-hidden rounded-2xl bg-[#f1f1f2]">
-                  <Image src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=950&q=90" alt="ماكلة مغربية ديال الدار فوق الميدة" width={950} height={1140} priority sizes="(max-width: 1024px) 60vw, 32vw" className="aspect-[.84/1] w-full object-cover" />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-white/95 px-3 py-3 sm:px-4 sm:py-3.5">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--color-muted)]">وجدات هاد الصباح</p>
-                    <p className="mt-1 text-xs font-semibold sm:text-sm">غدا خديجة</p>
-                  </figcaption>
-                </figure>
-                <div className="flex flex-col gap-3 sm:gap-4">
-                  <figure className="overflow-hidden rounded-2xl bg-[#f1f1f2]">
-                    <Image src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="خضرة ومكونات طريين ديال طبق اليوم" width={700} height={625} sizes="(max-width: 1024px) 35vw, 24vw" className="aspect-[1.12/1] w-full object-cover" />
-                  </figure>
-                  <div className="rounded-2xl border border-[var(--color-line)] bg-white p-3.5 sm:p-4">
-                    <div className="flex items-center gap-2 text-xs font-semibold"><span className="flex size-8 items-center justify-center rounded-full bg-[#f5f5f6] text-[var(--color-brand)]"><MapPin size={15} aria-hidden="true" /></span> حدّاك غير بخطوات</div>
-                    <p className="mt-2.5 text-[11px] leading-5 text-[var(--color-muted)]">طباخات ديال الحومة وماكلة موجدة بعناية.</p>
-                  </div>
-                </div>
+            <figure className="relative order-2 col-span-1 mx-auto w-full max-w-[260px] overflow-hidden rounded-2xl bg-[#f1f1f2] lg:col-start-1 lg:row-start-1">
+              <Image src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=950&q=90" alt="ماكلة مغربية ديال الدار فوق الميدة" width={950} height={1140} priority sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[.84/1] w-full object-cover" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-white/95 px-3 py-3 sm:px-4 sm:py-3.5">
+                <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--color-muted)]">وجدات هاد الصباح</p>
+                <p className="mt-1 text-xs font-semibold sm:text-sm">غدا خديجة</p>
+              </figcaption>
+            </figure>
+
+            <div className="order-3 col-span-1 mx-auto flex w-full max-w-[260px] flex-col gap-3 sm:gap-4 lg:col-start-3 lg:row-start-1">
+              <figure className="overflow-hidden rounded-2xl bg-[#f1f1f2]">
+                <Image src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="خضرة ومكونات طريين ديال طبق اليوم" width={700} height={625} sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[1.12/1] w-full object-cover" />
+              </figure>
+              <div className="rounded-2xl border border-[var(--color-line)] bg-white p-3.5 sm:p-4">
+                <div className="flex items-center gap-2 text-xs font-semibold"><span className="flex size-8 items-center justify-center rounded-full bg-[#f5f5f6] text-[var(--color-brand)]"><MapPin size={15} aria-hidden="true" /></span> حدّاك غير بخطوات</div>
+                <p className="mt-2.5 text-[11px] leading-5 text-[var(--color-muted)]">طباخات ديال الحومة وماكلة موجدة بعناية.</p>
               </div>
-              <a href="#plats-du-jour" className="absolute -bottom-5 left-4 inline-flex items-center gap-2 card-surface rounded-xl border border-[var(--color-line)] bg-white px-3.5 py-3 text-xs font-semibold sm:bottom-4 sm:left-[-2.5rem] sm:px-4"><span className="flex size-8 items-center justify-center rounded-full bg-[#f5f5f6] text-[var(--color-brand)]"><CookingPot size={16} aria-hidden="true" /></span> ديما ماكلة ديال الدار <ArrowDown size={14} className="ml-1 text-[var(--color-muted)]" aria-hidden="true" /></a>
             </div>
           </div>
         </section>

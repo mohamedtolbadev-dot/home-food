@@ -153,7 +153,7 @@ export default function CookOnboarding() {
             const active = index === step;
             const completed = index < step;
             return (
-              <div key={item.label} className={`flex items-center gap-2 rounded-full border px-2.5 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] ${active ? "border-[var(--color-brand)] bg-[var(--color-brand)]/5 text-[var(--color-brand)]" : completed ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-[var(--color-line)] bg-[#f8f8f9] text-[var(--color-muted)]"}`}>
+              <div key={item.label} className={`flex items-center gap-2 rounded-full border px-2.5 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] ${active ? "border-[var(--color-brand)]/40 bg-[var(--color-brand)]/10 text-[var(--color-secondary)]" : completed ? "border-[var(--color-secondary)]/20 bg-[var(--color-secondary)]/5 text-[var(--color-secondary)]" : "border-[var(--color-line)] bg-[#f8f8f9] text-[var(--color-muted)]"}`}>
                 <span className="flex size-5 items-center justify-center rounded-full bg-white text-current">
                   <Icon size={12} aria-hidden="true" />
                 </span>
