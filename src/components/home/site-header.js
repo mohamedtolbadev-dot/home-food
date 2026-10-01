@@ -42,7 +42,7 @@ export default function SiteHeader() {
         </div>
 
         <div className="hidden items-center gap-5 lg:flex">
-          <Link href="/#footer" className="text-[13px] font-medium text-[var(--color-muted)] transition-colors hover:text-[var(--color-brand)]">Connexion</Link>
+          <Link href="/account" className="text-[13px] font-medium text-[var(--color-muted)] transition-colors hover:text-[var(--color-brand)]">Mon compte</Link>
           {itemCount > 0 && <Link href="/checkout" aria-label={`Panier, ${itemCount} article${itemCount === 1 ? "" : "s"}`} className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)]"><ShoppingBasket size={16} aria-hidden="true" /> Panier <span>({itemCount})</span></Link>}
           <Link href="/meals" className="inline-flex min-h-10 items-center justify-center rounded-xl bg-[var(--color-brand)] px-5 text-[13px] font-semibold text-white hover:bg-[var(--color-brand-hover)] action-feedback">Commander</Link>
         </div>
@@ -65,7 +65,7 @@ export default function SiteHeader() {
             {links.map((link) => (
               <Link key={link.href} href={link.href} onClick={closeMenu} aria-current={link.active ? "page" : undefined} className={`border-b border-[var(--color-line)] py-3.5 text-sm font-medium ${link.active ? "text-[var(--color-brand)]" : "text-[var(--color-ink)]"}`}>{link.label}</Link>
             ))}
-            <Link href="/#footer" onClick={closeMenu} className="py-3.5 text-sm font-medium text-[var(--color-muted)]">Connexion</Link>
+            <Link href="/account" onClick={closeMenu} className="py-3.5 text-sm font-medium text-[var(--color-muted)]">Mon compte</Link>
             {itemCount > 0 && <Link href="/checkout" onClick={closeMenu} className="flex items-center gap-2 border-t border-[var(--color-line)] py-3.5 text-sm font-medium text-[var(--color-ink)]"><ShoppingBasket size={16} aria-hidden="true" /> Panier ({itemCount})</Link>}
             <Link href="/meals" onClick={closeMenu} className="mt-1 inline-flex min-h-11 items-center justify-center rounded-xl bg-[var(--color-brand)] px-5 text-sm font-semibold text-white action-feedback">Commander</Link>
           </div>

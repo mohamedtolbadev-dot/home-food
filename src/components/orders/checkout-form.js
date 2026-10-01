@@ -8,6 +8,7 @@ import DeliveryTimeSelector from "@/components/orders/delivery-time-selector";
 import { deliveryAreas, deliveryTimes, getOrderTotals } from "@/data/order-options";
 import { meals } from "@/data/homepage";
 import { writeLastOrder } from "@/utils/order-storage";
+import { appendCustomerOrder } from "@/utils/customer-storage";
 import { validateCheckout } from "@/utils/checkout-validation";
 
 const fieldClass = "h-11 w-full rounded-xl border border-[var(--color-line)] bg-white px-3 text-sm outline-none placeholder:text-[#85858c] focus:border-[var(--color-brand)]";
@@ -80,6 +81,7 @@ export default function CheckoutForm({ items, onConfirmed, total }) {
       setSubmitError("Votre navigateur ne permet pas d’enregistrer la confirmation. Vérifiez ses réglages de stockage puis réessayez.");
       return;
     }
+    appendCustomerOrder(order);
     onConfirmed();
     router.push("/checkout/confirmation");
   }
