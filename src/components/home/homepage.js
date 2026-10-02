@@ -75,18 +75,18 @@ export default function Homepage() {
             </div>
 
             <figure className="relative order-2 col-span-1 mx-auto w-full max-w-[260px] overflow-hidden rounded-2xl bg-[#f1f1f2] lg:col-start-1 lg:row-start-1">
-              <Image src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=950&q=90" alt="ماكلة مغربية ديال الدار فوق الميدة" width={950} height={1140} priority sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[.84/1] w-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=950&q=90" alt="ماكلة مغربية ديال الدار فوق الميدة" width={950} height={1140} priority sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[1.08/1] w-full object-cover lg:aspect-[.84/1]" />
               <figcaption className="absolute inset-x-0 bottom-0 bg-white/95 px-3 py-3 sm:px-4 sm:py-3.5">
                 <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--color-muted)]">وجدات هاد الصباح</p>
                 <p className="mt-1 text-xs font-semibold sm:text-sm">غدا خديجة</p>
               </figcaption>
             </figure>
 
-            <div className="order-3 col-span-1 mx-auto flex w-full max-w-[260px] flex-col gap-3 sm:gap-4 lg:col-start-3 lg:row-start-1">
-              <figure className="overflow-hidden rounded-2xl bg-[#f1f1f2]">
-                <Image src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="خضرة ومكونات طريين ديال طبق اليوم" width={700} height={625} sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[1.12/1] w-full object-cover" />
+            <div className="contents lg:order-3 lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:mx-auto lg:flex lg:w-full lg:max-w-[260px] lg:flex-col lg:gap-3">
+              <figure className="order-3 col-span-1 mx-auto w-full max-w-[260px] overflow-hidden rounded-2xl bg-[#f1f1f2] lg:order-none lg:col-span-1 lg:mx-0 lg:max-w-none">
+                <Image src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="خضرة ومكونات طريين ديال طبق اليوم" width={700} height={625} sizes="(max-width: 1024px) 42vw, 22vw" className="aspect-[1.08/1] w-full object-cover lg:aspect-[1.12/1]" />
               </figure>
-              <div className="rounded-2xl border border-[var(--color-line)] bg-white p-3.5 sm:p-4">
+              <div className="order-4 col-span-2 rounded-2xl border border-[var(--color-line)] bg-white p-3.5 sm:p-4 lg:order-none lg:col-span-1">
                 <div className="flex items-center gap-2 text-xs font-semibold"><span className="flex size-8 items-center justify-center rounded-full bg-[#f5f5f6] text-[var(--color-brand)]"><MapPin size={15} aria-hidden="true" /></span> حدّاك غير بخطوات</div>
                 <p className="mt-2.5 text-[11px] leading-5 text-[var(--color-muted)]">طباخات ديال الحومة وماكلة موجدة بعناية.</p>
               </div>
